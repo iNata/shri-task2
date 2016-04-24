@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Задание 2 - ШРИ</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <main class="main">
+      <h1>список студентов</h1>
+      <section class="student__section">
+        <div class="student__section-list"></div>
+        <button id="addStudent" class="btn">Добавить студента  </button>
+      </section>
+      <section class="student__team">
+        <h3 class="student__team-title">Команда A</h3>
+        <div class="student__team-nav">
+          <div class="student__team-select-block"></div>
+          <button class="btn student__team-btn js_add-to-team">Добавить в команду  </button>
+        </div>
+        <h3>Список участников команды</h3>
+        <ul id="teamA" class="student__team-list"></ul>
+        <table class="student__team-table">
+          <thead> 
+            <tr>
+              <th>Имя студента</th>
+              <th>Индивидуальные задания</th>
+              <th>Оценки за индивидуальное задание</th>
+              <th>Командные задания</th>
+              <th>Оценки за командные задания</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section class="student__team">
+        <h3 class="student__team-title">Команда B</h3>
+        <div class="student__team-nav">
+          <div class="student__team-select-block"></div>
+          <button class="btn student__team-btn js_add-to-team">Добавить в команду  </button>
+        </div>
+        <h3>Список участников команды</h3>
+        <ul id="teamB" class="student__team-list"></ul>
+        <table class="student__team-table">
+          <thead>
+            <tr>
+              <th>Имя студента</th>
+              <th>Индивидуальные задания</th>
+              <th>Оценки за индивидуальное задание</th>
+              <th>Командные задания</th>
+              <th>Оценки за командные задания</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -23,6 +23,9 @@ $(document).ready(function () {
   
   $(document).on('click', '.js_add-group-task', addGroupTask);
   
+  $(document).on('click', '.js_to-wishlist', addToWishlist);
+    
+  
   
   // load json data and insert into studentlist and team selects  
   function loadStudentData(storage) {
@@ -37,6 +40,7 @@ $(document).ready(function () {
     }).done(function(){
       renderStudentList(storage);
       renderTeamSelect(storage);
+      renderTeacherSelect(storage);
     });
   }
   
@@ -272,25 +276,57 @@ $(document).ready(function () {
       '</select>' +
     '</div>');
   }
+
+  // RENDER TEACHER WISHLIST SELECT
+  function renderTeacherSelect(storage){
+    var studentList = [];
+
+    $.each(storage, function (index, value) {
+      studentList.push('<option value="tWishlist-' + value.id + '" >' + value.name + '</option>');
+    });
+
+    $('<select/>', {
+      'id': 'teacherSelect',
+      'class': 'teacher__wishlist-select',
+      html: studentList.join('')
+    }).appendTo('.teacher__select-block');
+  }
   
-    
-    
-    
-  
-  
-  
-  
-  
-    
-    
-    
-  
-  
-  
-  
-  
-  
-  
-  
+  // ADD TO WISHLIST  
+  function addToWishlist(){
+    var el = $(this).closest('.teacher__wishlist');
+    var selectedOption = el.find('.teacher__select-block :selected');
+    var selectedStudent = selectedOption.text();
+    var selectedValue = el.find('.teacher__select-block').val();
+    if(selectedOption.length){
+      var selectedId = selectedValue.split('-').pop();
+    }
+
+    selectedOption.remove();
+
+    if(selectedOption.length){
+      var teacherWishlist = el.find('.teacher__wishlist-block');
+      var teacherWishlistId = teacherWishlist.attr('id');
+      var teacherWishlistChild = '<li id="' + teacherWishlistId + '-' + selectedId + '">' + selectedStudent + '</li>';
+      teacherWishlist.append(teacherWishlistChild);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });

@@ -234,4 +234,18 @@ select, input {
   .teacher__item + .teacher__item {
     border-top: 1px solid #ccc; }
 
+.teacher__wishlist {
+  display: block;
+  padding: 20px;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  margin-bottom: 20px; }
+
+.teacher__wishlist-select {
+  background: #fff; }
+
+.teacher__select-block {
+  margin: 20px 20px 20px 0;
+  display: inline-block; }
+
 /*# sourceMappingURL=styles.css.map */

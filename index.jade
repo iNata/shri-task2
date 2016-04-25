@@ -16,7 +16,7 @@ html
                     
         button.btn#addStudent Добавить студента  
         
-        
+      
       section.student__team
         h3.student__team-title Команда A
         .student__team-nav
@@ -28,17 +28,11 @@ html
         table.student__team-table
           thead 
             tr
-              th Имя студента
-              th Индивидуальные задания
-              th Оценки за индивидуальное задание
-              th Командные задания
-              th Оценки за командные задания
-              
+              - var th = ['Имя студента','Индивидуальные задания','Оценки за индивидуальное задание','Командные задания','Оценки за командные задания']
+              each thItem in th
+                th=thItem
           tbody
             
-              
-        
-          
       section.student__team
         h3.student__team-title Команда B
         .student__team-nav
@@ -48,14 +42,11 @@ html
         
         ul.student__team-list#teamB
         table.student__team-table
-          thead
+          thead 
             tr
-              th Имя студента
-              th Индивидуальные задания
-              th Оценки за индивидуальное задание
-              th Командные задания
-              th Оценки за командные задания
-
+              - var th = ['Имя студента','Индивидуальные задания','Оценки за индивидуальное задание','Командные задания','Оценки за командные задания']
+              each thItem in th
+                th=thItem
           tbody
       
           

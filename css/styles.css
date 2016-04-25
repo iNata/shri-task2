@@ -63,6 +63,9 @@ h6 {
 h1, h2 {
   font-size: 28px; }
 
+h2 {
+  margin-top: 50px; }
+
 select, input {
   background: #fafafa;
   border: 1px solid #ccc;
@@ -217,5 +220,18 @@ select, input {
   min-height: 40px; }
   .group-task__mark-item + .group-task__mark-item {
     margin-top: 10px; }
+
+.teacher__list {
+  display: block;
+  width: 50%;
+  border: 1px solid #ccc;
+  margin-bottom: 20px; }
+
+.teacher__item {
+  position: relative;
+  padding: 10px 30px 10px 20px;
+  background: #fafafa; }
+  .teacher__item + .teacher__item {
+    border-top: 1px solid #ccc; }
 
 /*# sourceMappingURL=styles.css.map */

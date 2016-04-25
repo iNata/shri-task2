@@ -1,9 +1,14 @@
 "use strict";
 $(document).ready(function () {
+  
   // students' profile storage
   var studentArray = [];
   
+  // teachers' profile storage
+  var teacherArray = [];
+  
   loadStudentData(studentArray);
+  loadTeacherData(teacherArray);
   
     
   $(document).on('click', '#addStudent', addStudent);
@@ -33,7 +38,38 @@ $(document).ready(function () {
       renderStudentList(storage);
       renderTeamSelect(storage);
     });
-  }  
+  }
+  
+  // LOAD TEACHERS' DATA
+  function loadTeacherData(storage){
+    $.getJSON('ajax/test.json', function (data) {
+
+      $.each(data.teachers, function (i, teacher) {
+        storage.push({
+          id: teacher.id,
+          name: teacher.name
+        });
+      });
+    }).done(function(){
+      renderTeacherList(storage);      
+    });
+  }
+  
+  // RENDER TEACHER LIST
+  function renderTeacherList(storage){
+    var teacherList = [];
+
+    $.each(storage, function (index, value) {
+      teacherList.push('<li id="teacher-' + value.id + '" class="teacher__item"><span>' + value.name + '</span></li>');
+    });
+
+    $('<ul/>', {
+      'id': 'teacherList',
+      'class': 'teacher__list',
+      html: teacherList.join('')
+    }).appendTo('.teacher__section-list');
+  }
+  
     
   // RENDER TOTAL STUDENT LIST
   function renderStudentList(storage){
@@ -80,14 +116,14 @@ $(document).ready(function () {
       
       var studentOption = '<option value="student-'+ studentId +'">'+ person +'</option>';
       $('.student__team-select').append(studentOption);
+      
+      // add student to storage    
+      var newStudent = {};
+      newStudent.id = studentId.toString();
+      newStudent.name = person;
+      studentArray.push(newStudent);
+      console.log(studentArray);    
     }
-    
-    // add student to storage    
-    var newStudent = {};
-    newStudent.id = studentId.toString();
-    newStudent.name = person;
-    studentArray.push(newStudent);
-    console.log(studentArray);    
     
   }
   

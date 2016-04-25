@@ -71,6 +71,9 @@ h6
   font-weight: 600
   color: $dark-grey
   
+h1, h2
+  font-size: 28px
+  
 select, input
   background: #fafafa
   border: 1px solid #ccc
@@ -148,8 +151,9 @@ select, input
       margin-top: 10px
       
       
-.student__team-table
+.student__team-table, .student__group-table
   border-collapse: collapse
+  margin-bottom: 30px
   th
     padding: 10px
   td
@@ -157,12 +161,17 @@ select, input
     min-height: 30px
     border: 1px solid $grey
     
+.student__group-table
+  width: 100%
+  .group-task__btn-wrapper
+    text-align: center
+    
 // TASKS
 
 .student__team-table .task-td__btn-wrapper    
   text-align: center
 
-.task-td__btn
+.task-td__btn, .group-task__btn
   margin: 0
   width: 130px
   background: $blue
@@ -175,6 +184,8 @@ select, input
   position: relative
   padding: 5px 40px 5px 5px
   min-height: 30px
+  height: 40px
+  overflow: hidden
   .task-content
     display: block
     line-height: 30px
@@ -189,11 +200,42 @@ select, input
     height: 20px
     background: url('../img/edit.png') center center no-repeat
     background-size: contain
-    cursor: pointer
-  &.edit-task
-    .task-content
-      display: none
-    input
-      display: block
+    cursor: pointer  
   &+.task-list__item
-    margin-top: 10px 
+    margin-top: 10px
+    
+    
+.task-mark__item
+  min-height: 40px
+  &+.task-mark__item
+    margin-top: 10px
+    
+
+.group-task__item
+  position: relative
+  padding: 5px 40px 5px 5px
+  min-height: 30px
+  height: 40px
+  overflow: hidden
+  .task-content
+    display: block
+    line-height: 30px
+  input
+    display: none
+    width: 100%
+  .group-task__edit
+    position: absolute
+    top: 10px
+    right: 10px
+    width: 20px
+    height: 20px
+    background: url('../img/edit.png') center center no-repeat
+    background-size: contain
+    cursor: pointer
+  &+.group-task__item
+    margin-top: 10px
+    
+.group-task__mark-item
+  min-height: 40px
+  &+.group-task__mark-item
+    margin-top: 10px

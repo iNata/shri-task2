@@ -3,7 +3,7 @@ $(document).ready(function () {
   // students' profile storage
   var studentArray = [];
   
-  loadData(studentArray);
+  loadStudentData(studentArray);
   
     
   $(document).on('click', '#addStudent', addStudent);
@@ -16,9 +16,11 @@ $(document).ready(function () {
   
   $(document).on('click', '.js_edit-task', editTask);
   
+  $(document).on('click', '.js_add-group-task', addGroupTask);
+  
   
   // load json data and insert into studentlist and team selects  
-  function loadData(storage) {
+  function loadStudentData(storage) {
     $.getJSON('ajax/test.json', function (data) {
 
       $.each(data.students, function (i, student) {
@@ -158,12 +160,10 @@ $(document).ready(function () {
 
       table.find('tr:last-child').append($('<td></td>' +
       '<td class="task-list">' +
-      '</td><td></td><td class="task-td__btn-wrapper"><button class="task-td__btn btn js_add-task">добавить задание</button></td>'));
+      '</td><td class="task-mark"></td><td class="task-td__btn-wrapper"><button class="task-td__btn btn js_add-task">добавить задание</button></td>'));
 
       table.find('tr:last-child td:first-child').text(selectedStudent);
-
-      // insert "add task" button
-      table.find('tr td:nth-child(2)').addClass('task-list');
+      
     }
   }
   
@@ -177,9 +177,22 @@ $(document).ready(function () {
       '<input type="text" />' +
       '<span class="task-btn__edit js_edit-task"></span>' +
     '</div>');
-  }
+
+    var wrapperMark = el.closest('tr').find('.task-mark');
+
+    wrapperMark.append('<div class="task-mark__item">' +
+      '<select>' +
+        '<option>5</option>' +
+        '<option>4</option>' +
+        '<option>3</option>' +
+        '<option>2</option>' +
+        '<option>1</option>' +
+      '</select>' +
+    '</div>');
+  }  
   
-  //EDIT TAST
+
+  //EDIT TASK
   function editTask(){
     var el = $(this);        
     el.hide();
@@ -197,6 +210,31 @@ $(document).ready(function () {
       task.closest('.task-list__item').find('.task-btn__edit').show();
     });
     
+  }
+  
+  
+  //ADD GROUP TASK  
+  function addGroupTask(){
+    var el = $(this);
+    var wrapper = el.closest('tr').find('.group-task__list');
+
+    wrapper.append('<div class="group-task__item">' +
+      '<span class="task-content">Задание</span>'+
+      '<input type="text" />' +
+      '<span class="group-task__edit js_edit-group-task"></span>' +
+    '</div>');
+
+    var wrapperMark = el.closest('tr').find('.group-task__mark');
+
+    wrapperMark.append('<div class="group-task__mark-item">' +
+      '<select>' +
+        '<option>5</option>' +
+        '<option>4</option>' +
+        '<option>3</option>' +
+        '<option>2</option>' +
+        '<option>1</option>' +
+      '</select>' +
+    '</div>');
   }
   
     

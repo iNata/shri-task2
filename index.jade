@@ -24,7 +24,7 @@ html
           button.btn.student__team-btn.js_add-to-team Добавить в команду  
         h3 Список участников команды
         ul.student__team-list#teamA
-        
+        h3 Список индивидуальных заданий
         table.student__team-table
           thead 
             tr
@@ -32,6 +32,19 @@ html
               each thItem in th
                 th=thItem
           tbody
+        h3 Список командных заданий
+        table.student__group-table
+          thead 
+            tr
+              - var th = ['Командные задания','Оценки за командное задание', '']
+              each thItem in th
+                th=thItem
+          tbody
+            tr
+              td.group-task__list
+              td.group-task__mark
+              td.group-task__btn-wrapper
+                button.group-task__btn.js_add-group-task Добавить задание
             
       section.student__team
         h3.student__team-title Команда B
@@ -41,6 +54,9 @@ html
         h3 Список участников команды
         
         ul.student__team-list#teamB
+          
+        h3 Список индивидуальных заданий
+        
         table.student__team-table
           thead 
             tr
@@ -48,6 +64,23 @@ html
               each thItem in th
                 th=thItem
           tbody
+            
+        h3 Список командных заданий
+        
+        table.student__group-table
+          thead 
+            tr
+              - var th = ['Командные задания','Оценки за командное задание', '']
+              each thItem in th
+                th=thItem
+          tbody
+            tr
+              td.group-task__list
+              td.group-task__mark
+              td.group-task__btn-wrapper
+                button.group-task__btn.js_add-group-task Добавить задание
+      
+      h2 Приоритезированные списки
       
           
         

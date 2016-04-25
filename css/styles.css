@@ -60,6 +60,9 @@ h6 {
   font-weight: 600;
   color: #333; }
 
+h1, h2 {
+  font-size: 28px; }
+
 select, input {
   background: #fafafa;
   border: 1px solid #ccc;
@@ -130,31 +133,39 @@ select, input {
     .student__team-list li + li {
       margin-top: 10px; }
 
-.student__team-table {
-  border-collapse: collapse; }
-  .student__team-table th {
+.student__team-table, .student__group-table {
+  border-collapse: collapse;
+  margin-bottom: 30px; }
+  .student__team-table th, .student__group-table th {
     padding: 10px; }
-  .student__team-table td {
+  .student__team-table td, .student__group-table td {
     padding: 10px;
     min-height: 30px;
     border: 1px solid #ccc; }
 
+.student__group-table {
+  width: 100%; }
+  .student__group-table .group-task__btn-wrapper {
+    text-align: center; }
+
 .student__team-table .task-td__btn-wrapper {
   text-align: center; }
 
-.task-td__btn {
+.task-td__btn, .group-task__btn {
   margin: 0;
   width: 130px;
   background: #0abdcd;
   font-size: 10px;
   padding: 7px 10px; }
-  .task-td__btn:hover {
+  .task-td__btn:hover, .group-task__btn:hover {
     background: #81d0d7; }
 
 .task-list__item {
   position: relative;
   padding: 5px 40px 5px 5px;
-  min-height: 30px; }
+  min-height: 30px;
+  height: 40px;
+  overflow: hidden; }
   .task-list__item .task-content {
     display: block;
     line-height: 30px; }
@@ -170,11 +181,41 @@ select, input {
     background: url("../img/edit.png") center center no-repeat;
     background-size: contain;
     cursor: pointer; }
-  .task-list__item.edit-task .task-content {
-    display: none; }
-  .task-list__item.edit-task input {
-    display: block; }
   .task-list__item + .task-list__item {
+    margin-top: 10px; }
+
+.task-mark__item {
+  min-height: 40px; }
+  .task-mark__item + .task-mark__item {
+    margin-top: 10px; }
+
+.group-task__item {
+  position: relative;
+  padding: 5px 40px 5px 5px;
+  min-height: 30px;
+  height: 40px;
+  overflow: hidden; }
+  .group-task__item .task-content {
+    display: block;
+    line-height: 30px; }
+  .group-task__item input {
+    display: none;
+    width: 100%; }
+  .group-task__item .group-task__edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: url("../img/edit.png") center center no-repeat;
+    background-size: contain;
+    cursor: pointer; }
+  .group-task__item + .group-task__item {
+    margin-top: 10px; }
+
+.group-task__mark-item {
+  min-height: 40px; }
+  .group-task__mark-item + .group-task__mark-item {
     margin-top: 10px; }
 
 /*# sourceMappingURL=styles.css.map */

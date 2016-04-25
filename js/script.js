@@ -6,7 +6,7 @@ $(document).ready(function () {
   loadData(studentArray);
   
     
-  $(document).on('click', '#addStudent', showDialog);
+  $(document).on('click', '#addStudent', addStudent);
   
   $(document).on('click', '.js_remove', removeStudent);
   
@@ -26,8 +26,8 @@ $(document).ready(function () {
         });
       });      
     }).done(function(){
-      renderStudentList(studentArray);
-      renderTeamSelect(studentArray);
+      renderStudentList(storage);
+      renderTeamSelect(storage);
     });
   }  
     
@@ -61,21 +61,30 @@ $(document).ready(function () {
     }).appendTo('.student__team-select-block');
   } 
   
-  // show dialog to add student 
-  function showDialog() {
+  // add student
+  function addStudent() {
     var person = prompt("Введите имя студента", "");
 
-    if (person != null) {
-      var studentList = document.getElementById("studentList");
-      var el = document.createElement('li');
-      
+    if (person != null) { 
+      var studentList = document.getElementById('studentList');
+      var el = document.createElement('li');      
       el.className = 'student__item';
       el.innerHTML = '<span>' + person + '</span>' + '<i class="student__remove js_remove">✖</i>';
       studentList.appendChild(el);      
       
-      var studentOption = '<option>'+ person +'</option>';
-      $('.student__team-select').append(studentOption);
+      //var studentOption = '<option>'+ person +'</option>';
+      //$('.student__team-select').append(studentOption);
     }
+    
+    // add student to storage
+    
+    var newStudent = {};
+    newStudent.id = studentArray.length + 1;
+    newStudent.name = person;
+    studentArray.push(newStudent);
+    console.log(studentArray);
+    
+    
   }
   
   // remove student 

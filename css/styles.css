@@ -80,7 +80,8 @@ select, input {
   margin-bottom: 20px; }
 
 .student__item {
-  padding: 10px 20px;
+  position: relative;
+  padding: 10px 30px 10px 20px;
   background: #fafafa;
   -webkit-transition: 0.3s background ease;
   -moz-transition: 0.3s background ease;
@@ -91,7 +92,10 @@ select, input {
     background: #f1f1f1; }
 
 .student__remove {
-  cursor: pointer; }
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 10px; }
 
 .student__team {
   padding: 10px;

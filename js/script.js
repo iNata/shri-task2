@@ -31,12 +31,12 @@ $(document).ready(function () {
     });
   }  
     
-  // render total student list
+  // RENDER TOTAL STUDENT LIST
   function renderStudentList(storage){
     var studentList = [];
     
     $.each(storage, function (index, value) {
-      studentList.push('<li id="' + value.id + '" class="student__item"><span>' + value.name + '</span><i class="student__remove js_remove">✖</i></li>');
+      studentList.push('<li id="student-' + value.id + '" class="student__item"><span>' + value.name + '</span><i class="student__remove js_remove">✖</i></li>');
     });
     
     $('<ul/>', {
@@ -46,12 +46,12 @@ $(document).ready(function () {
     }).appendTo('.student__section-list');
   }
   
-  // render team select
+  // RENDER TEAM SELECT
   function renderTeamSelect(storage){
     var optionList = [];
     
     $.each(storage, function (index, value) {
-      optionList.push('<option value="' + value.id + '" >' + value.name + '</option>');  
+      optionList.push('<option value="student-' + value.id + '" >' + value.name + '</option>');  
     });
     
     $('<select/>', {
@@ -61,53 +61,53 @@ $(document).ready(function () {
     }).appendTo('.student__team-select-block');
   } 
   
-  // add student
+  // ADD STUDENT
   function addStudent() {
     var person = prompt("Введите имя студента", "");
 
     if (person != null) { 
       var studentList = document.getElementById('studentList');
-      var el = document.createElement('li');      
+      var el = document.createElement('li');
+      var studentId = studentArray.length + 1;
+      el.id = 'student-' +studentId; 
       el.className = 'student__item';
       el.innerHTML = '<span>' + person + '</span>' + '<i class="student__remove js_remove">✖</i>';
       studentList.appendChild(el);      
       
-      //var studentOption = '<option>'+ person +'</option>';
-      //$('.student__team-select').append(studentOption);
+      var studentOption = '<option value="student-'+ studentId +'">'+ person +'</option>';
+      $('.student__team-select').append(studentOption);
     }
     
-    // add student to storage
-    
+    // add student to storage    
     var newStudent = {};
-    newStudent.id = studentArray.length + 1;
+    newStudent.id = studentId.toString();
     newStudent.name = person;
     studentArray.push(newStudent);
-    console.log(studentArray);
-    
+    console.log(studentArray);    
     
   }
   
-  // remove student 
+  // REMOVE STUDENT 
   function removeStudent(){
-    var removedValue = $(this).closest('.student__item').find('span').text();
+    var el = $(this);
+    var removedValue = el.closest('.student__item').attr('id');       
+    $('#'+removedValue).remove();
     
-    $(this).closest('.student__item').remove();
     $('.student__team-list li').each(function(){
       if($(this).text(removedValue)){
         $(this).remove();
       }
     });
     
-    $('.student__team-select option').each(function(){
-      if($(this).text() == removedValue){
-        $(this).remove();
-      }
-    });
-        
+    $('.student__team-select option[value="'+removedValue+'"]').remove();
+    
+    //remove student from storage
+    var removedId = removedValue.split('-').pop();    
+    studentArray = $.grep(studentArray, function(o,i) { return o.id == removedId; }, true);
+    console.log(studentArray); 
   }
   
-  // add student to team
-  
+  // ADD STUDENT TO TEAM  
   function addToTeam(){
     
     var el = $(this).closest('.student__team');

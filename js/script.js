@@ -12,7 +12,9 @@ $(document).ready(function () {
   
   $(document).on('click', '.js_add-to-team', addToTeam);
 
-
+  $(document).on('click', '.js_add-task', addTask);
+  
+  $(document).on('click', '.js_edit-task', editTask);
   
   
   // load json data and insert into studentlist and team selects  
@@ -127,14 +129,18 @@ $(document).ready(function () {
     var selectedOption = el.find('.student__team-select :selected');    
     var selectedStudent = selectedOption.text();    
     var selectedValue = el.find('.student__team-select').val();
-    var selectedId = selectedValue.split('-').pop();
+    if(selectedOption.length){
+      var selectedId = selectedValue.split('-').pop();
+    }    
 
     selectedOption.remove();
     
-    var studentTeam = el.find('.student__team-list'); 
-    var studentTeamId = studentTeam.attr('id');
-    var studentTeamChild = '<li id="' + studentTeamId + '-' + selectedId + '">' + selectedStudent + '</li>';
-    studentTeam.append(studentTeamChild);
+    if(selectedOption.length){
+      var studentTeam = el.find('.student__team-list');
+      var studentTeamId = studentTeam.attr('id');
+      var studentTeamChild = '<li id="' + studentTeamId + '-' + selectedId + '">' + selectedStudent + '</li>';
+      studentTeam.append(studentTeamChild);
+    }    
 
     // find all team lists and remove selected value    
     $('.student__team-select option').each(function(){
@@ -145,23 +151,53 @@ $(document).ready(function () {
         eachEl.remove();
       }
     });
-    
-    // insert table row
-    var table = el.find('.student__team-table tbody');
-    var tr = table.append($('<tr id="'+studentTeamId+'Row-'+selectedId+'">'));
-    
-    table.find('tr:last-child').append($('<td></td>' +
-    '<td class="task-list">' +    
-    '</td><td></td><td class="task-td__btn-wrapper"><button class="task-td__btn btn js-add-task">добавить задание</button></td>'));
-       
-    table.find('tr:last-child td:first-child').text(selectedStudent); 
-    
-    // insert "add task" button
-    table.find('tr td:nth-child(2)').addClass('task-list');
-    
+    if(selectedOption.length) {
+      // insert table row
+      var table = el.find('.student__team-table tbody');
+      var tr = table.append($('<tr id="' + studentTeamId + 'Row-' + selectedId + '">'));
+
+      table.find('tr:last-child').append($('<td></td>' +
+      '<td class="task-list">' +
+      '</td><td></td><td class="task-td__btn-wrapper"><button class="task-td__btn btn js_add-task">добавить задание</button></td>'));
+
+      table.find('tr:last-child td:first-child').text(selectedStudent);
+
+      // insert "add task" button
+      table.find('tr td:nth-child(2)').addClass('task-list');
+    }
   }
   
+  // ADD TASK  
+  function addTask(){
+    var el = $(this);
+    var wrapper = el.closest('tr').find('.task-list');
+    
+    wrapper.append('<div class="task-list__item">' +
+      '<span class="task-content">Задание</span>'+
+      '<input type="text" />' +
+      '<span class="task-btn__edit js_edit-task"></span>' +
+    '</div>');
+  }
   
+  //EDIT TAST
+  function editTask(){
+    var el = $(this);        
+    el.hide();
+    var task = el.closest('.task-list__item');
+    var content = task.find('.task-content');
+    var text = content.text();
+    content.hide();    
+    task.find('input').show().val(text).focus();
+    
+    task.find('input').blur(function(){
+      var input = $(this);
+      var newText = input.val();
+      input.hide();
+      content.show().text(newText);
+      task.closest('.task-list__item').find('.task-btn__edit').show();
+    });
+    
+  }
   
     
     

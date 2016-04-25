@@ -151,4 +151,30 @@ select, input {
   .task-td__btn:hover {
     background: #81d0d7; }
 
+.task-list__item {
+  position: relative;
+  padding: 5px 40px 5px 5px;
+  min-height: 30px; }
+  .task-list__item .task-content {
+    display: block;
+    line-height: 30px; }
+  .task-list__item input {
+    display: none;
+    width: 100%; }
+  .task-list__item .task-btn__edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: url("../img/edit.png") center center no-repeat;
+    background-size: contain;
+    cursor: pointer; }
+  .task-list__item.edit-task .task-content {
+    display: none; }
+  .task-list__item.edit-task input {
+    display: block; }
+  .task-list__item + .task-list__item {
+    margin-top: 10px; }
+
 /*# sourceMappingURL=styles.css.map */

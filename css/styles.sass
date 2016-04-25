@@ -171,4 +171,29 @@ select, input
   &:hover
     background: $light-blue
   
-  
+.task-list__item  
+  position: relative
+  padding: 5px 40px 5px 5px
+  min-height: 30px
+  .task-content
+    display: block
+    line-height: 30px
+  input
+    display: none
+    width: 100%
+  .task-btn__edit    
+    position: absolute
+    top: 10px
+    right: 10px
+    width: 20px
+    height: 20px
+    background: url('../img/edit.png') center center no-repeat
+    background-size: contain
+    cursor: pointer
+  &.edit-task
+    .task-content
+      display: none
+    input
+      display: block
+  &+.task-list__item
+    margin-top: 10px 

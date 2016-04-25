@@ -149,11 +149,15 @@ $(document).ready(function () {
     // insert table row
     var table = el.find('.student__team-table tbody');
     var tr = table.append($('<tr id="'+studentTeamId+'Row-'+selectedId+'">'));
-    var j;
-    for (j = 0; j < 5; j++){
-      table.find('tr:last-child').append($('<td></td>'))
-    }    
+    
+    table.find('tr:last-child').append($('<td></td>' +
+    '<td class="task-list">' +    
+    '</td><td></td><td class="task-td__btn-wrapper"><button class="task-td__btn btn js-add-task">добавить задание</button></td>'));
+       
     table.find('tr:last-child td:first-child').text(selectedStudent); 
+    
+    // insert "add task" button
+    table.find('tr td:nth-child(2)').addClass('task-list');
     
   }
   
